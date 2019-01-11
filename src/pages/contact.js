@@ -69,7 +69,7 @@ class ContactPage extends React.Component {
                 } = props
                 return (
                   <NetlifyForm
-                    name="Contact"
+                    name="Contact-2"
                     onSubmit={handleSubmit}
                     handleChange={handleChange}
                   >
