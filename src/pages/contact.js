@@ -137,7 +137,7 @@ class ContactPage extends React.Component {
                       />
                     </div>
                     <Recaptcha
-                      sitekey="6LfbTIcUAAAAAJJpctmlKvrPyj7zECaOv2LzLZvH"
+                      sitekey="6LfvzIgUAAAAAOaZtX2-AKAh1SeZ-qiOb5xBsipZ"
                       render="explicit"
                       verifyCallback={this.handleVerifyRecaptcha}
                       onloadCallback={this.handleLoadRecaptcha}
