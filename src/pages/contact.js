@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Formik } from 'formik'
+import Recaptcha from 'react-recaptcha'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -30,11 +31,21 @@ const config = {
 }
 
 class ContactPage extends React.Component {
+  state = {
+    recaptchaValue: null,
+  }
   handleSetThankYouFocus = () => {
     console.log('Thanks it worked!')
   }
   handleSetErrorFocus = () => {
     console.error('Ah dang it did not work!')
+  }
+
+  handleVerifyRecaptcha = recaptchaValue => {
+    this.setState({ recaptchaValue })
+  }
+  handleLoadRecaptcha = (...args) => {
+    console.log(args)
   }
   render() {
     return (
@@ -44,6 +55,7 @@ class ContactPage extends React.Component {
           formName="Contact"
           onSubmitSuccess={this.handleSetThankYouFocus}
           onSubmitError={this.handleSetErrorFocus}
+          recaptchaValue={this.state.recaptchaValue}
         >
           {netlifyState => (
             <Formik {...config} onSubmit={netlifyState.handleSubmit}>
@@ -124,6 +136,12 @@ class ContactPage extends React.Component {
                         id="comments"
                       />
                     </div>
+                    <Recaptcha
+                      sitekey="6LfbTIcUAAAAAJJpctmlKvrPyj7zECaOv2LzLZvH"
+                      render="explicit"
+                      verifyCallback={this.handleVerifyRecaptcha}
+                      onloadCallback={this.handleLoadRecaptcha}
+                    />
                     <button type="submit" disabled={isSubmitting}>
                       Submit
                     </button>

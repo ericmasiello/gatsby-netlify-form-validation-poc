@@ -13,6 +13,7 @@ export default class NetlifyFormComposer extends React.Component {
     formName: PropTypes.string.isRequired,
     onSubmitSuccess: PropTypes.func,
     onSubmitError: PropTypes.func,
+    recaptchaValue: PropTypes.string,
   }
 
   static defaultProps = {
@@ -37,7 +38,11 @@ export default class NetlifyFormComposer extends React.Component {
     return fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': this.props.formName, ...values }),
+      body: encode({
+        'form-name': this.props.formName,
+        'g-recaptcha-response': this.props.recaptchaValue,
+        ...values,
+      }),
     })
       .then(() => {
         if (actions && typeof actions.setSubmitting === 'function') {
