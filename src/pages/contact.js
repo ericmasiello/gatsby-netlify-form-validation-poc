@@ -8,6 +8,8 @@ import SEO from '../components/seo'
 import NetlifyFormComposer from '../components/NetlifyFormComposer'
 import NetlifyForm from '../components/NetlifyForm'
 
+const FORMNAME = 'Contact-3'
+
 const config = {
   initialValues: {
     name: '',
@@ -52,7 +54,7 @@ class ContactPage extends React.Component {
       <Layout>
         <SEO title="Contact Page" />
         <NetlifyFormComposer
-          formName="Contact"
+          formName={FORMNAME}
           onSubmitSuccess={this.handleSetThankYouFocus}
           onSubmitError={this.handleSetErrorFocus}
           recaptchaValue={this.state.recaptchaValue}
@@ -69,7 +71,7 @@ class ContactPage extends React.Component {
                 } = props
                 return (
                   <NetlifyForm
-                    name="Contact-2"
+                    name={FORMNAME}
                     onSubmit={handleSubmit}
                     handleChange={handleChange}
                   >
